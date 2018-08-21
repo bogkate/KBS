@@ -4,9 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace KBSDb
+namespace DataContracts.Interfaces
 {
-    public class Class1
+    public interface ICrower
     {
+        Response<IEnumerable<CrowerData>> ExecuteIndexing();
     }
 }
