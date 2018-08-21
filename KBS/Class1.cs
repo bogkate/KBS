@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace KBS
+namespace KBSDb
 {
     public class Class1
     {
