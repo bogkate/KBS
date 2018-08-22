@@ -1,0 +1,36 @@
+﻿@{
+    ViewBag.Title = "Add";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@model MVC.Models.AddReestrModel
+
+@{
+    ViewBag.Title = "Добавить url";
+}
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend>AddReestrModel</legend>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Url)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Url)
+            @Html.ValidationMessageFor(model => model.Url)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Depth)
+            @Html.ValidationMessageFor(model => model.Depth)
+        </div>
+        <p>
+            <input type="submit" value="Добавить" />
+            @Html.ActionLink("Отмена", "Index")
+        </p>
+    </fieldset>
+}
+

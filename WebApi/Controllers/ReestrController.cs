@@ -13,7 +13,6 @@ namespace WebApi.Controllers
     using DataContracts.Reestr;
     using KBSDb;
 
-    [RoutePrefix("api/Reestr")]
     public class ReestrController : ApiController, IReestr
     {
         [HttpGet]
@@ -30,7 +29,8 @@ namespace WebApi.Controllers
                     {
                         Depth = s.Depth,
                         Priority = s.Priority,
-                        ReeestId = s.ReeestrId
+                        ReestrId = s.ReeestrId,
+                        Url=s.Url,
                     });
 
                     result.Status = ResponseStatus.Success;
@@ -43,7 +43,41 @@ namespace WebApi.Controllers
 
             return result;
         }
+        [HttpGet]
+        [ActionName("GetUrl")]
+        public Response<ReestrData> GetUrl([FromUri]long id)
+        {
+            var result = new Response<ReestrData> { Status = ResponseStatus.UnknownError };
 
+            try
+            {
+                using (var storage = new Storage())
+                {
+                    var url= storage.Reestr.FirstOrDefault(s => s.ReeestrId == id);
+                    if (url != null)
+                    {
+                        result.Data = new ReestrData
+                        {
+                            Depth = url.Depth,
+                            Priority = url.Priority,
+                            ReestrId = url.ReeestrId,
+                            Url = url.Url
+                        };
+                        result.Status = ResponseStatus.Success;
+                    }
+                    else
+                    {
+                        result.Status = ResponseStatus.NotFound;
+                    }
+                }
+            }
+            catch (Exception exception)
+            {
+
+            }
+
+            return result;
+        }
         [HttpPost]
         [ActionName("Add")]
         public Response<object> AddUrl(ReestrData requestData)
@@ -83,7 +117,7 @@ namespace WebApi.Controllers
             {
                 using (var storage = new Storage())
                 {
-                    var reestrDb = storage.Reestr.Find(requestData.ReeestId);
+                    var reestrDb = storage.Reestr.Find(requestData.ReestrId);
                     if (reestrDb != null)
                     {
                         reestrDb.Priority = requestData.Priority;

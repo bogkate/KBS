@@ -1,8 +1,38 @@
 ﻿@model System.Collections.Generic.IEnumerable<DataContracts.Reestr.ReestrData>
 
 @{
-    ViewBag.Title = "title";
-    Layout = "_Layout";
+    ViewBag.Title = "Реестр";
 }
 
-<h2>title</h2>
+<p>
+    @Html.ActionLink("Добавить", "Add")
+</p>
+
+<table>
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Url)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Depth)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Url)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Depth)
+            </td>
+            <td>
+                @Html.ActionLink("Изменить", "Edit", new { reestrId = item.ReestrId }) |
+                @Html.ActionLink("Удалить", "Delete", new { reestrId = item.ReestrId })
+            </td>
+        </tr>
+    }
+
+</table>

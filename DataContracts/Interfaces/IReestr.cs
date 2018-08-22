@@ -11,6 +11,8 @@ namespace DataContracts.Interfaces
     {
         Response<IEnumerable<ReestrData>> GetUrls();
 
+        Response<ReestrData> GetUrl(long urlId);
+
         Response<object> AddUrl(ReestrData response);
 
         Response<object> EditUrl(ReestrData response);

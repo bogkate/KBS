@@ -14,10 +14,9 @@ namespace WebApi.Controllers
     using DataContracts.Interfaces;
     using KBSDb;
 
-    [RoutePrefix("api/Crower")]
     public class CrowerController : ApiController, ICrower
     {
-        [HttpGet]
+        [HttpPost]
         [ActionName("Execute")]
         public  Response<IEnumerable<CrowerData>> ExecuteIndexing()
         {
@@ -30,7 +29,47 @@ namespace WebApi.Controllers
                     var urls = storage.Reestr.OrderBy(s=>s.Priority).ToList();
                     foreach(var url in urls)
                     {
-                        
+                        var httpClient = new HttpClient { BaseAddress = new Uri(url.Url) };
+                        using (var responseTask = httpClient.GetAsync(httpClient.BaseAddress.AbsoluteUri))
+                        {
+                            using (var response = responseTask.Result)
+                            {
+                                if (response.IsSuccessStatusCode)
+                                {
+                                    using (var contentTask = response.Content.ReadAsStringAsync())
+                                    {
+                                        var content = contentTask.Result;
+
+                                      
+                                        var words = content.Split().GroupBy(s =>s).ToDictionary(group => group.Key, group => group.Count());
+                                        storage.Crower.Add(new Crower
+                                        {
+                                            Reestr = url,
+                                            CountIndex = words.Count(),
+                                            Status = true,
+                                        });
+                                        foreach (var word in words)
+                                        {
+                                            storage.Index.Add(new Index
+                                            {
+                                                Reestr=url,
+                                                Text=word.Key,
+                                                Count=word.Value,
+                                            });
+                                        }
+                                    }
+                                }
+                                else
+                                {
+                                    storage.Crower.Add(new Crower
+                                    {
+                                        Reestr = url,
+                                        Status = true,
+                                    });
+                                }
+                                storage.SaveChanges();
+                            }
+                        }
                     }
                 }
             }

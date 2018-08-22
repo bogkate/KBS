@@ -32,9 +32,13 @@ namespace WebApiClient
 
         public Response<IEnumerable<ReestrData>> GetUrls()
         {
-            return ApiCall<IEnumerable<ReestrData>>($"api/reest/GetUrls");
+            return ApiCall<IEnumerable<ReestrData>>($"api/reestr/GetUrls");
         }
-    
+
+        public Response<ReestrData> GetUrl(long id)
+        {
+            return ApiCall<ReestrData>($"api/reestr/GetUrl?id={id}");
+        }
 
         public Response<object> AddUrl(ReestrData request)
         {

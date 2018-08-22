@@ -11,7 +11,7 @@ namespace DataContracts.Reestr
     public struct ReestrData
     {
         [DataMember]
-        public long ReeestId { get; set; }
+        public long ReestrId { get; set; }
         [DataMember]
         public string Url { get; set; }
         [DataMember]
