@@ -51,6 +51,7 @@
   <ItemGroup>
     <Compile Include="Crower.cs" />
     <Compile Include="Index.cs" />
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Reestr.cs" />
     <Compile Include="Storage.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -58,6 +59,9 @@
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="createDb.sql" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

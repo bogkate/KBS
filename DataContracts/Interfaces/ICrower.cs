@@ -6,6 +6,8 @@ using System.Threading.Tasks;
 
 namespace DataContracts.Interfaces
 {
+    using Crower;
+
     public interface ICrower
     {
         Response<IEnumerable<CrowerData>> ExecuteIndexing();

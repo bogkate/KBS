@@ -41,6 +41,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Crower\CrowerData.cs" />
     <Compile Include="Interfaces\ICrower.cs" />
     <Compile Include="Interfaces\IReestr.cs" />
     <Compile Include="Interfaces\ISearch.cs" />
@@ -48,6 +49,7 @@
     <Compile Include="ResponseStatus.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Reestr\ReestrData.cs" />
+    <Compile Include="Search\SearchData.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

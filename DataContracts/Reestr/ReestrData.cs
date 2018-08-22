@@ -10,9 +10,13 @@ namespace DataContracts.Reestr
     [DataContract]
     public struct ReestrData
     {
+        [DataMember]
         public long ReeestId { get; set; }
+        [DataMember]
         public string Url { get; set; }
+        [DataMember]
         public int Depth { get; set; }
+        [DataMember]
         public int Priority { get; set; }
     }
 }
