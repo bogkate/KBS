@@ -12,9 +12,11 @@ namespace WebApi.Controllers
     using DataContracts.Search;
     using KBSDb;
 
+    [RoutePrefix("api/Search")]
     public class SearchController : ApiController, ISearch
     {
-        public Response<IEnumerable<SearchData>> Search(string text)
+        [HttpGet]
+        public Response<IEnumerable<SearchData>> Search([FromUri]string text)
         {
             var result = new Response<IEnumerable<SearchData>> { Status = ResponseStatus.UnknownError };
 

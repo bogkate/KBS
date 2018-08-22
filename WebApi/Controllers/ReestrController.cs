@@ -13,6 +13,7 @@ namespace WebApi.Controllers
     using DataContracts.Reestr;
     using KBSDb;
 
+    [RoutePrefix("api/Reestr")]
     public class ReestrController : ApiController, IReestr
     {
         [HttpGet]

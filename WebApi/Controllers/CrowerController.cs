@@ -14,6 +14,7 @@ namespace WebApi.Controllers
     using DataContracts.Interfaces;
     using KBSDb;
 
+    [RoutePrefix("api/Crower")]
     public class CrowerController : ApiController, ICrower
     {
         [HttpGet]

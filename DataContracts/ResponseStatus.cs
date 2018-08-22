@@ -11,5 +11,6 @@ namespace DataContracts
         Success,
         UnknownError,
         NotFound,
+        AccessDenied
     }
 }
