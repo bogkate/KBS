@@ -27,7 +27,7 @@ namespace WebApiClient
 
         public Response<IEnumerable<SearchData>> Search(string text)
         {
-            return ApiCall<IEnumerable<SearchData>>($"api/crower/Search?text={text}");
+            return ApiCall<IEnumerable<SearchData>>($"api/search/search?text={text}");
         }
 
         public Response<IEnumerable<ReestrData>> GetUrls()

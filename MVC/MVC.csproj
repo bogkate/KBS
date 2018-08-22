@@ -151,11 +151,14 @@
     <Compile Include="Controllers\CrowerController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ReestrController.cs" />
+    <Compile Include="Controllers\SearchController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\AddReestrModel.cs" />
     <Compile Include="Models\ReestrModel.cs" />
+    <Compile Include="Models\SearchModel.cs" />
+    <Compile Include="Models\SearchResultModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -202,6 +205,8 @@
     <Content Include="Views\Reestr\Add.cshtml" />
     <Content Include="Views\Reestr\Delete.cshtml" />
     <Content Include="Views\Crower\Index.cshtml" />
+    <Content Include="Views\Search\Index.cshtml" />
+    <Content Include="Views\Search\Search.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

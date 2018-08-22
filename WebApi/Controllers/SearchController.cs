@@ -12,7 +12,6 @@ namespace WebApi.Controllers
     using DataContracts.Search;
     using KBSDb;
 
-    [RoutePrefix("api/Search")]
     public class SearchController : ApiController, ISearch
     {
         [HttpGet]
@@ -24,14 +23,13 @@ namespace WebApi.Controllers
             {
                 using (var storage= new Storage())
                 {
-                    var searchResults = storage.Index.Where(i => i.Text.Contains(text)).ToList();
+                    var searchResults = storage.Index.Where(i => i.Text.Contains(text)).Select(s=>s.Reestr.Url).Distinct().ToList();
                     if (searchResults.Any())
                     {
                         result.Data = searchResults.Select(i => new SearchData
                         {
-                            Url = i.Reestr.Url,
-                            Count = i.Count
-                        });
+                            Url = i,
+                        }).ToList();
 
                         result.Status = ResponseStatus.Success;
                     }
