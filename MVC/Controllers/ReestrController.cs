@@ -10,10 +10,11 @@ namespace MVC.Controllers
     using DataContracts;
     using DataContracts.Reestr;
     using Models;
+    using System.Configuration;
 
     public class ReestrController : Controller
     {
-        private string webApiUrl = "http://localhost:5493/";
+        private string webApiUrl = ConfigurationManager.AppSettings["WebApiUrl"];
         // GET: Reestr
         public ActionResult Index()
         {

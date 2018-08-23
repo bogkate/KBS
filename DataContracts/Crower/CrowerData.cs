@@ -18,6 +18,6 @@ namespace DataContracts.Crower
         public  bool Status { get; set; }
 
         [DataMember]
-        public  int CountIndex { get; set; }
+        public  long CountIndex { get; set; }
     }
 }

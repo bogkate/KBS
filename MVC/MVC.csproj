@@ -148,7 +148,7 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
-    <Compile Include="Controllers\CrowerController.cs" />
+    <Compile Include="Controllers\CrowlerController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ReestrController.cs" />
     <Compile Include="Controllers\SearchController.cs" />
@@ -204,9 +204,10 @@
     <Content Include="Views\Reestr\Edit.cshtml" />
     <Content Include="Views\Reestr\Add.cshtml" />
     <Content Include="Views\Reestr\Delete.cshtml" />
-    <Content Include="Views\Crower\Index.cshtml" />
+    <Content Include="Views\Crowler\Index.cshtml" />
     <Content Include="Views\Search\Index.cshtml" />
     <Content Include="Views\Search\Search.cshtml" />
+    <Content Include="Views\Crowler\Execute.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

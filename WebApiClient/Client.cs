@@ -22,7 +22,7 @@ namespace WebApiClient
 
         public Response<IEnumerable<CrowerData>> ExecuteIndexing()
         {
-            return ApiCall<IEnumerable<CrowerData>, object>("api/crower/Execute", null);
+            return ApiCall<IEnumerable<CrowerData>, object>("api/crowler/Execute", null);
         }
 
         public Response<IEnumerable<SearchData>> Search(string text)

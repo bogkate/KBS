@@ -28,11 +28,11 @@ namespace MVC.Controllers
 
                 if (result.Status == ResponseStatus.Success)
                 {
-                    return View("Search",result.Data);
+                    return View("Search", result.Data);
                 }
             }
 
-            throw new Exception("Can't add url!");
+            throw new Exception("Can't search model");
         }
     }
 }

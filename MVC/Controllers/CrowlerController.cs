@@ -1,6 +1,7 @@
 ﻿using DataContracts;
 using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -8,9 +9,9 @@ using WebApiClient;
 
 namespace MVC.Controllers
 {
-    public class CrowerController : Controller
+    public class CrowlerController : Controller
     {
-        private string webApiUrl = "http://localhost:5493/";
+        private string webApiUrl = ConfigurationManager.AppSettings["WebApiUrl"];
         // GET: Crower
         [HttpGet]
         public ActionResult Index()
@@ -26,10 +27,10 @@ namespace MVC.Controllers
 
             if (result.Status == ResponseStatus.Success)
             {
-                return RedirectToAction("Index", "Reestr");
+                return View(result.Data);
             }
 
-            throw new Exception("Can't remove url!");
+            throw new Exception("Can't start indexing!");
         }
     }
 }

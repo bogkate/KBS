@@ -1,0 +1,39 @@
+﻿@{
+    ViewBag.Title = "Execute";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Результаты индексирования</h2>
+@model System.Collections.Generic.IEnumerable<DataContracts.Crower.CrowerData>
+
+<table>
+    <tr>
+        <th>
+            Url
+        </th>
+        <th>
+            Проиндексировано?
+        </th>
+        <th>
+            Количество
+        </th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Url)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Status)
+            </td>
+            <td>
+               @Html.DisplayFor(modelItem => item.CountIndex)
+            </td>
+        </tr>
+    }
+
+</table>
+
+
