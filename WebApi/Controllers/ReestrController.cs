@@ -43,6 +43,50 @@ namespace WebApi.Controllers
 
             return result;
         }
+
+        [HttpGet]
+        [ActionName("GetUrlsAsPagedList")]
+        public Response<PagedListContainer<ReestrData>> GetUrlsAsPagedList(int pageNumber, int pageSize)
+        {
+            var result = new Response<PagedListContainer<ReestrData>> { Status = ResponseStatus.UnknownError };
+
+            try
+            {
+                using (var storage = new Storage())
+                {
+                    if (pageNumber > 0 && pageSize > 0)
+                    {
+                        var count = storage.Reestr.Count();
+                        var urls = storage.Reestr.Skip((pageNumber - 1) * pageSize).Take(pageSize).Select
+                        (
+                            s => new ReestrData
+                            {
+                                Depth = s.Depth,
+                                Priority = s.Priority,
+                                ReestrId = s.ReeestrId,
+                                Url = s.Url
+                            }
+                        );
+
+                        result.Data = new PagedListContainer<ReestrData>
+                        {
+                            PageNumber = pageNumber,
+                            PageSize = pageSize,
+                            TotalItemCount = count,
+                            Data = urls
+                        };
+                        result.Status = ResponseStatus.Success;
+                    }
+                }
+            }
+            catch (Exception exception)
+            {
+
+            }
+
+            return result;
+        }
+
         [HttpGet]
         [ActionName("GetUrl")]
         public Response<ReestrData> GetUrl([FromUri]long id)

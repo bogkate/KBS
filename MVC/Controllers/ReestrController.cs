@@ -14,7 +14,8 @@ namespace MVC.Controllers
 
     public class ReestrController : Controller
     {
-        private string webApiUrl = ConfigurationManager.AppSettings["WebApiUrl"];
+        private readonly string webApiUrl = ConfigurationManager.AppSettings["WebApiUrl"];
+        private  const  int PageSize=100;
         // GET: Reestr
         public ActionResult Index()
         {
@@ -29,6 +30,7 @@ namespace MVC.Controllers
 
             throw new Exception("Can't call api server!");
         }
+
         [HttpGet]
         public ActionResult Add()
         {

@@ -14,8 +14,9 @@
     @Html.ValidationSummary(true)
 
     <fieldset>
-        <legend>SearchModel</legend>
+        <legend>Search</legend>
 
+        @ViewBag.Text
         <div class="editor-label">
             @Html.LabelFor(model => model.Text)
         </div>

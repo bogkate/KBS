@@ -45,6 +45,7 @@
     <Compile Include="Interfaces\ICrower.cs" />
     <Compile Include="Interfaces\IReestr.cs" />
     <Compile Include="Interfaces\ISearch.cs" />
+    <Compile Include="PageListContainer.cs" />
     <Compile Include="Response.cs" />
     <Compile Include="ResponseStatus.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

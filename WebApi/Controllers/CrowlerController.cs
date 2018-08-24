@@ -32,6 +32,10 @@ namespace WebApi.Controllers
                     {
                         try
                         {
+                            if (storage.Crower.FirstOrDefault(s => s.Reestr.ReeestrId == url.ReeestrId && s.Status) != null)
+                            {
+                                continue;
+                            }
                             var web = new HtmlWeb();
                             var doc = web.Load(url.Url);
                             var words = new Dictionary<string, int>();
