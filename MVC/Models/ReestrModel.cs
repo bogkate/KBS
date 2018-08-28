@@ -18,11 +18,13 @@ namespace MVC.Models
         [DataMember(IsRequired = true)]
         [Required]
         [Display(Name = "Url")]
+        [Url]
         public string Url { get; set; }
 
         [DataMember(IsRequired = true)]
         [Required]
         [Display(Name = "Depth")]
+        [Range(1, int.MaxValue, ErrorMessage = "Введите положительное число")]
         public int Depth { get; set; }
     }
 }

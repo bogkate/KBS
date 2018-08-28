@@ -14,6 +14,7 @@ namespace WebApi.Controllers
     using DataContracts.Interfaces;
     using KBSDb;
     using HtmlAgilityPack;
+    using System.Text.RegularExpressions;
 
     public class CrowlerController : ApiController, ICrower
     {
@@ -38,7 +39,7 @@ namespace WebApi.Controllers
                             }
                             var web = new HtmlWeb();
                             var doc = web.Load(url.Url);
-                            var words = new Dictionary<string, int>();
+                            var text = new List<string>();
                             foreach (var link in doc.DocumentNode.SelectNodes("//a[@href]"))
                             {
                                 var href = link.Attributes["href"].Value;
@@ -51,7 +52,7 @@ namespace WebApi.Controllers
                                     try
                                     {
                                         var subDoc = web.Load(web.ResponseUri.AbsoluteUri + href);
-                                        IndexPage(subDoc,words);
+                                        text.Add(IndexPage(subDoc));
                                     }
                                     catch
                                     {
@@ -59,21 +60,19 @@ namespace WebApi.Controllers
                                     }
                                 }
                             }
-                            IndexPage(doc, words);
+                            text.Add(IndexPage(doc));
 
                             storage.Crower.Add(new Crower
                             {
                                 Reestr = url,
-                                CountIndex = words.Count(),
                                 Status = true,
                             });
-                            foreach (var word in words)
+                            foreach (var t in text)
                             {
                                 storage.Index.Add(new Index
                                 {
                                     Reestr = url,
-                                    Text = word.Key,
-                                    Count = word.Value,
+                                    Text = t,
                                 });
                             }
                         }
@@ -104,25 +103,25 @@ namespace WebApi.Controllers
             return result;
         }
 
-        private void IndexPage(HtmlDocument subDoc,Dictionary<string,int> words)
+        private string IndexPage(HtmlDocument subDoc)
         {
             var root = subDoc.DocumentNode;
 
-            foreach (var node in subDoc.DocumentNode.SelectNodes("//text()"))
-            {
-                if (string.IsNullOrEmpty(node.InnerText) || string.IsNullOrWhiteSpace(node.InnerText))
-                    continue;
-                if (words.ContainsKey(node.InnerText))
-                {
-                    words[node.InnerText]++;
-                }
-                else
-                {
-                    words.Add(node.InnerText, 1);
-                }
-            }
+            /* foreach (var node in subDoc.DocumentNode.SelectNodes("//text()"))
+             {
+                 if (string.IsNullOrEmpty(node.InnerText) || string.IsNullOrWhiteSpace(node.InnerText))
+                     continue;
+                 if (words.ContainsKey(node.InnerText))
+                 {
+                     words[node.InnerText]++;
+                 }
+                 else
+                 {
+                     words.Add(node.InnerText, 1);
+                 }
+             }*/
+            return Regex.Replace(root.InnerText, "<.*?>", string.Empty);
         }
-
-        
+      
     }
 }

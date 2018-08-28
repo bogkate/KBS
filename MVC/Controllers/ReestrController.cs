@@ -49,9 +49,14 @@ namespace MVC.Controllers
                 {
                     return RedirectToAction("Index", "Reestr");
                 }
+                throw new Exception("Can't add url!");
+            }
+            else
+            {
+                return View(model);
             }
 
-            throw new Exception("Can't add url!");
+
         }
 
         [HttpGet]
@@ -92,9 +97,14 @@ namespace MVC.Controllers
                 {
                     return RedirectToAction("Index", "Reestr");
                 }
+
+                throw new Exception("Can't edit url!");
+            } 
+            else
+            {
+                return View(model);
             }
 
-            throw new Exception("Can't edit url!");
         }
 
         [HttpGet]
